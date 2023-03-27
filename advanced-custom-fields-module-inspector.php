@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 if (!class_exists('ACF_Module_Inspector')) :
 
 	class ACF_Module_Inspector {
-		var $version = '1.1.0';
+		var $version = '1.0';
 
 		function __construct() {
 			$this->initialize();
