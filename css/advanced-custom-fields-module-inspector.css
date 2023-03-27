@@ -1,0 +1,164 @@
+.advanced-custom-fields-module-inspector-results ul.groups > li {
+    font-weight: bold;
+    font-size: 16px;
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li h3 {
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li h3 i,
+.advanced-custom-fields-module-inspector-results ul.groups > li h4 i,
+.advanced-custom-fields-module-inspector-results ul.groups > li h5 i {
+    box-sizing: border-box;
+    transition: transform 0.3s;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    transform: rotate(180deg);
+    position: relative;
+    border: solid 1px #000;
+    left: 1px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li h3 i.minus,
+.advanced-custom-fields-module-inspector-results ul.groups > li h4 i.minus,
+.advanced-custom-fields-module-inspector-results ul.groups > li h5 i.minus {
+    transform: rotate(0deg);
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li h3 i::before,
+.advanced-custom-fields-module-inspector-results ul.groups > li h4 i::before,
+.advanced-custom-fields-module-inspector-results ul.groups > li h5 i::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 0;
+    border-bottom: solid 2px #000;
+    position: absolute;
+    bottom: 4px;
+    left: 1px;
+    transform: rotate(90deg);
+    transition: width 0.3s;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    h3
+    i.minus::before,
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    h4
+    i.minus::before,
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    h5
+    i.minus::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: solid 2px #000;
+    position: absolute;
+    transform: rotate(90deg);
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li h3 i::after,
+.advanced-custom-fields-module-inspector-results ul.groups > li h4 i::after,
+.advanced-custom-fields-module-inspector-results ul.groups > li h5 i::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 0;
+    border-bottom: solid 2px #000;
+    position: absolute;
+    bottom: 4px;
+    left: 1px;
+}
+.advanced-custom-fields-module-inspector-results ul.groups > li ul.fields {
+    margin-left: 20px;
+    display: none;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    h4 {
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules {
+    margin-left: 40px;
+    display: none;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules.show {
+    display: block;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules
+    > li {
+    font-size: 12px;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules
+    > li
+    h5 {
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules
+    > li
+    h5.empty {
+    color: red;
+    cursor: default;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules
+    > li
+    ul.urls {
+    margin-left: 40px;
+    display: none;
+}
+.advanced-custom-fields-module-inspector-results
+    ul.groups
+    > li
+    ul.fields
+    > li
+    ul.modules
+    > li
+    ul.urls
+    li
+    a {
+    font-weight: normal;
+} /*# sourceMappingURL=advanced-custom-fields-module-inspector.css.map */
