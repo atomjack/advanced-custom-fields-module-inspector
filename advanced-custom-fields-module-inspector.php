@@ -79,6 +79,7 @@ if (!class_exists('ACF_Module_Inspector')) :
 							$field_groups[$group['key']]['fields'][$field['key']]['modules'][$layout['name']] = [
 								'label' => $layout['label'],
 								'count' => 0,
+								'urls' => []
 							];
 						}
 					}
@@ -101,7 +102,7 @@ if (!class_exists('ACF_Module_Inspector')) :
 							continue;
 						}
 						foreach ($modules_arr as $module) {
-							if (isset($field_groups[$group_key]['fields'][$field_key]['modules'][$module['acf_fc_layout']])) {
+							if (isset($field_groups[$group_key]['fields'][$field_key]['modules'][$module['acf_fc_layout']]) && !in_array(get_permalink($post), $field_groups[$group_key]['fields'][$field_key]['modules'][$module['acf_fc_layout']]['urls'])) {
 								$field_groups[$group_key]['fields'][$field_key]['modules'][$module['acf_fc_layout']]['count']++;
 								$field_groups[$group_key]['fields'][$field_key]['modules'][$module['acf_fc_layout']]['urls'][] = get_permalink($post);
 							}
