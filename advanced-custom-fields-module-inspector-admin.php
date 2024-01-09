@@ -8,12 +8,15 @@ if (!class_exists('ACF_Module_Inspector_Admin')) :
 
 	acf_include('includes/admin/tools/class-acf-admin-tool.php');
 
-	class ACF_Module_Inspector_Admin extends ACF_Admin_Tool {
-		function __construct() {
+	class ACF_Module_Inspector_Admin extends ACF_Admin_Tool
+	{
+		function __construct()
+		{
 			parent::__construct();
 		}
 
-		function initialize() {
+		function initialize()
+		{
 
 			// vars
 			$this->name  = 'ACF_Module_Inspector';
@@ -21,9 +24,13 @@ if (!class_exists('ACF_Module_Inspector_Admin')) :
 			$this->icon  = 'dashicons-upload';
 		}
 
-		function html() {
+		function html()
+		{
 
 ?>
+			<div class="acf-postbox-header">
+				<h2 class="acf-postbox-title">Module Inspector</h2>
+			</div>
 			<p><?php _e('Click the Inspect button to analyze usage of Flexible Content Modules.', 'acf'); ?></p>
 			<p class="acf-submit">
 				<input type="button" id="inspect-button" class="button button-primary" value="<?php _e('Inspect', 'advanced-custom-fields-module-inspector'); ?>" />

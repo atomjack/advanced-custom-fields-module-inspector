@@ -14,20 +14,24 @@ if (!defined('ABSPATH')) {
 
 if (!class_exists('ACF_Module_Inspector')) :
 
-	class ACF_Module_Inspector {
+	class ACF_Module_Inspector
+	{
 		var $version = '1.0';
+		var $CACHE_ID = 'acf_module_inspector_cache';
 
-		function __construct() {
+		function __construct()
+		{
 			$this->initialize();
 			add_action('admin_enqueue_scripts', array($this, 'init_scripts'));
 			add_action('wp_ajax_acf_module_inspector_inspect', array($this, 'inspect'));
 		}
 
-		function init_scripts() {
+		function init_scripts()
+		{
 			wp_enqueue_script('advanced-custom-fields-module-inspector-admin', plugins_url('js/advanced-custom-fields-module-inspector-admin.js', __FILE__), array('jquery'));
 			wp_localize_script(
 				'advanced-custom-fields-module-inspector-admin',
-				'ACFModuleInspector',
+				'ACF_Module_Inspector',
 				[
 					'ajaxUrl' => admin_url('admin-ajax.php'), //url for php file that process ajax request to WP
 					'nonce'   => wp_create_nonce('acf-fcm-module-nonce.'), // this is a unique token to prevent form hijacking
@@ -36,7 +40,8 @@ if (!class_exists('ACF_Module_Inspector')) :
 			wp_enqueue_style('advanced-custom-fields-module-inspector-admin', plugins_url('css/advanced-custom-fields-module-inspector.css', __FILE__), array(), filemtime(plugin_dir_path(__FILE__) . '/css/advanced-custom-fields-module-inspector.css'));
 		}
 
-		function initialize() {
+		function initialize()
+		{
 			$version  = $this->version;
 			$basename = plugin_basename(__FILE__);
 			$path     = plugin_dir_path(__FILE__);
@@ -46,15 +51,25 @@ if (!class_exists('ACF_Module_Inspector')) :
 			add_action('admin_init', array($this, 'init'), 5);
 		}
 
-		function init() {
+		function init()
+		{
 			add_action('acf/include_admin_tools', array($this, 'include_tools'));
 		}
 
-		function include_tools() {
+		function include_tools()
+		{
 			include_once $path . 'advanced-custom-fields-module-inspector-admin.php';
 		}
 
-		function inspect() {
+		function inspect()
+		{
+			$cache = get_transient($this->CACHE_ID);
+			if (false !== $cache && !$_POST['force']) {
+				echo $cache;
+				die();
+			}
+			ob_start();
+
 			$groups = acf_get_field_groups();
 
 			$field_groups = [];
@@ -123,8 +138,8 @@ if (!class_exists('ACF_Module_Inspector')) :
 			// ksort[$uses];
 			//print_r($field_groups);
 ?>
-			<h2>Field Groups</h2>
-			<ul class="groups">
+			<h2>Field Groups <a href="#" class="refresh-cache"></a></h2>
+			<ul class="groups asdlfkjasdlkfj">
 				<?php
 				foreach ($field_groups as $group) {
 				?>
@@ -156,6 +171,10 @@ if (!class_exists('ACF_Module_Inspector')) :
 			</ul>
 <?php
 
+			$html = ob_get_contents();
+			ob_end_clean();
+			set_transient($this->CACHE_ID, $html, 3600 * 24);
+			echo $html;
 			die();
 		}
 	}
@@ -166,7 +185,8 @@ if (!class_exists('ACF_Module_Inspector')) :
 endif;
 
 if (!function_exists('acf_module_inspector_is_acf_installed')) {
-	function acf_module_inspector_is_acf_installed() {
+	function acf_module_inspector_is_acf_installed()
+	{
 		$file = plugin_basename(__FILE__);
 
 		if (is_admin() && (!class_exists('acf_pro') && current_user_can('activate_plugins')) && is_plugin_active($file)) {
